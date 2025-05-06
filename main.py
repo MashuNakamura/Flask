@@ -3,7 +3,7 @@ from app import BayesianMBTIApp
 
 # Inisialisasi Flask
 app = Flask(__name__)
-app.secret_key = '123'  # untuk session
+app.secret_key = '123'
 
 # Load app dan pertanyaan saat pertama
 mbti_app = BayesianMBTIApp()
@@ -37,14 +37,12 @@ def index():
 
     return redirect(url_for("question", idx=0))
 
-
 @app.route("/question/<int:idx>")
 def question(idx):
     if idx >= len(questions):
         return redirect(url_for("result"))
     question, _ = questions[idx]
     return render_template("index.html", idx=idx, question=question)
-
 
 @app.route("/result")
 def result():
